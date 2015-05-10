@@ -2,3 +2,4 @@ venv
 *.pyc
 staticfiles
 .vagrant
+local_settings.py
