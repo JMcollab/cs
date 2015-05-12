@@ -18,4 +18,5 @@ source /home/vagrant/.virtualenvs/proj/bin/activate
 # install project requirements to virtualenv
 cd /vagrant && pip install -r requirements.txt
 
+echo "cd /vagrant" >> /home/vagrant/.bashrc
 echo "source ~/.virtualenvs/proj/bin/activate" >> /home/vagrant/.bashrc
