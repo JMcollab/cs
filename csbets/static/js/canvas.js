@@ -12,14 +12,16 @@ ctx.fillRect(0,0, 200, -600);
 
 function fillBar() {
     ctx.fillStyle="#14a1ff";
-    ctx.fillRect(0, 0, 200, -10); //Up to 10 skins
-    if(!(i % 6)){
-        skins.innerHTML = i = " skins deposited";
+    ctx.fillRect(0, 0, 200, value * -10); //Up to 10 skins
+    if(i % 6 == 0)
+        skins.innerHTML = (i/6).toString() + " skins deposited";
+    if(i <= skins*6) {
+        i++;
+        value ++;
     }
-    i++;
-    if(i > skins*6)
+    else
         clearInterval(interval);
 };
 var i = 0;
-var skins = 10;
+var skins = 2;
 var interval = window.setInterval(fillBar, 100);
