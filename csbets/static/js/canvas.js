@@ -11,10 +11,15 @@ ctx.fillRect(0,0, 200, -600);
 /*var interval = window.setInterval(fillBar, 1000); *///Fills bar by 1 per second...doesn't stop
 
 function fillBar() {
-  value += 1;
-  ctx.fillStyle="#14a1ff";
-  ctx.fillRect(0, 0, 200, value * -60); //Up to 10 skins
-
-  var skins = document.getElementById("numSkins");
-  skins.innerHTML = value + " skins deposited";
+    ctx.fillStyle="#14a1ff";
+    ctx.fillRect(0, 0, 200, -10); //Up to 10 skins
+    if(!(i % 6)){
+        skins.innerHTML = i = " skins deposited";
+    }
+    i++;
+    if(i > skins*6)
+        clearInterval(interval);
 };
+var i = 0;
+var skins = 10;
+var interval = window.setInterval(fillBar, 100);
