@@ -70,5 +70,30 @@ Vagrant.configure(2) do |config|
   # SHELL
   
   # Provisioning with shell script
-  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.provision :shell, inline: $scriptonce
+  config.vm.provision :shell, inline: $scriptrepeat, run: "always", privileged: false
 end
+
+$scriptonce = <<SCRIPT
+echo run once script...
+apt-get update
+apt-get install -y python3-pip python3-dev libpq-dev git
+pip3 install virtualenv
+
+# aliases for django commands
+echo "alias djrun=\"python manage.py runserver 0.0.0.0:8000\"" >> /home/vagrant/.bashrc
+echo "alias manage=\"python manage.py\"" >> /home/vagrant/.bashrc
+
+echo "cd /vagrant" >> /home/vagrant/.bashrc
+echo "source ~/.virtualenvs/proj/bin/activate" >> /home/vagrant/.bashrc
+SCRIPT
+
+$scriptrepeat = <<SCRIPT
+echo repeat script...
+mkdir /home/vagrant/.virtualenvs
+virtualenv -p python3 /home/vagrant/.virtualenvs/proj
+source /home/vagrant/.virtualenvs/proj/bin/activate
+
+# install project requirements to virtualenv
+cd /vagrant && pip install -r requirements.txt
+SCRIPT
