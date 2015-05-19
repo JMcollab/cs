@@ -81,8 +81,8 @@ apt-get install -y python3-pip python3-dev libpq-dev git
 pip3 install virtualenv
 
 # aliases for django commands
-echo "alias djrun=\"python manage.py runserver 0.0.0.0:8000\"" >> /home/vagrant/.bashrc
-echo "alias manage=\"python manage.py\"" >> /home/vagrant/.bashrc
+echo "alias djrun='python manage.py runserver 0.0.0.0:8000'" >> /home/vagrant/.bashrc
+echo "alias manage='python manage.py'" >> /home/vagrant/.bashrc
 
 echo "cd /vagrant" >> /home/vagrant/.bashrc
 echo "source ~/.virtualenvs/proj/bin/activate" >> /home/vagrant/.bashrc
